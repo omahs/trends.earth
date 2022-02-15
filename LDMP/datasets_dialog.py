@@ -19,8 +19,7 @@ from .jobs import manager
 from .jobs.models import Job
 from .logger import log
 
-WidgetDatasetItemDetailsUi, _ = uic.loadUiType(
-    str(Path(__file__).parents[0] / "gui/WidgetDatasetItemDetails.ui")
+WidgetDatasetItemDetailsUi, _ = uic.loadUiType(str(Path(__file__).parents[0] / "gui/WidgetDatasetItemDetails.ui")
 )
 
 ICON_PATH = os.path.join(os.path.dirname(__file__), 'icons')

@@ -1407,6 +1407,26 @@ def _get_usable_bands(
     return result
 
 
+class comboBox_no_mousescroll(QtWidgets.QComboBox):
+    def __init__(self, *args):
+        super(comboBox_no_mousescroll, self).__init__(*args)
+        self.setFocusPolicy(QtCore.Qt.StrongFocus)
+
+    def focusInEvent(self, event):
+        self.setFocusPolicy(QtCore.Qt.WheelFocus)
+        super(comboBox_no_mousescroll, self).focusInEvent(event)
+
+    def focusOutEvent(self, event):
+        self.setFocusPolicy(QtCore.Qt.StrongFocus)
+        super(comboBox_no_mousescroll, self).focusOutEvent(event)
+
+    def wheelEvent(self, event):
+        if self.hasFocus():
+            return super(comboBox_no_mousescroll, self).wheelEvent(event)
+        else:
+            event.ignore()
+
+
 class WidgetDataIOSelectTELayerBase(QtWidgets.QWidget):
     comboBox_layers: QtWidgets.QComboBox
     layer_list: typing.Optional[typing.List[Band]]
